@@ -70,10 +70,13 @@ public class NoteActivity extends AppCompatActivity {
         //Getting a reference to the intent that was used to start this activity
         Intent intent = getIntent();
         //Get the extra containing the note from it. Note_info is the name of the extra
-        //-1 indicate that the extr was not found in the intent
+        //-1 indicate that the extra was not found in the intent
+        //Get the position from intent extra
         int position = intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET);
-        //If there is no note passed, isNewNote will be true. But if there is a note passed, isNewNote will be false.
-        mIsNewNote = mNote == null;
+        //make sure that the position is actually set, reach out the data manager and get the note at that position and put it into my field
+        mIsNewNote = position == POSITION_NOT_SET;
+        if(!mIsNewNote)
+            mNote = DataManager.getInstance().getNotes().get(position);
     }
 
     @Override
