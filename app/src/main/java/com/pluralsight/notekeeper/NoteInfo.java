@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Got members from the course, title e text from the note
  */
-public final class NoteInfo {
+public final class NoteInfo implements Parcelable {
     private CourseInfo mCourse;
     private String mTitle;
     private String mText;
@@ -67,4 +67,15 @@ public final class NoteInfo {
         return getCompareKey();
     }
 
+    //Use when we have a special parcelling needs, otherwise return zero
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //Responsible to write the member information for the type instance into the Parcel and recevies a parcelable as a parameter
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
 }
