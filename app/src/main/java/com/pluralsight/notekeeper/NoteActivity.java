@@ -52,6 +52,13 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void displayNotes(Spinner spinnerCoursers, EditText textNoteTitle, EditText textNoteText) {
+       List<CourseInfo> courses = DataManager.getInstance().getCourses();
+       //We want to know the index of the course from our notes, so called getCourse.
+       int courseIndex = courses.indexOf(mNote.getCourse());
+       spinnerCoursers.setSelection(courseIndex);
+
+        textNoteTitle.setText((mNote.getTitle()));
+        textNoteText.setText((mNote.getTitle()));
 
     }
 
