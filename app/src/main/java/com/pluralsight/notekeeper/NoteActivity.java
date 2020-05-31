@@ -1,5 +1,6 @@
 package com.pluralsight.notekeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,12 +13,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
     public static final  String NOTE_INFO = "com.pluralsight.notekeeper.NOTE_INFO";
+    private NoteInfo mNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,18 @@ public class NoteActivity extends AppCompatActivity {
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Associar o adapter ao spinner
         spinnerCousers.setAdapter((adapterCourses));
+
+        readDisplayStateValues();
+
+        EditText textNoteTitle = findViewById(R.id.text_note_title);
+        EditText textNoteText = findViewById(R.id.text_note_text);
+    }
+
+    private void readDisplayStateValues() {
+        //Getting a reference to the intent that was used to start this activity
+        Intent intent = getIntent();
+        //Get the extra containing the note from it
+        mNote = intent.getParcelableExtra(NOTE_INFO);
     }
 
     @Override
