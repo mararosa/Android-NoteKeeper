@@ -94,12 +94,18 @@ public class NoteActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_send_email) {
+            sendEmail();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
 
+
+    }
+
+    private void sendEmail() {
+        //Going to use an implicit intent
 
     }
 }
