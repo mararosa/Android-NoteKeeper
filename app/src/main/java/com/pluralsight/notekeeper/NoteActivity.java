@@ -115,5 +115,6 @@ public class NoteActivity extends AppCompatActivity {
         String subject = mTextNoteTitle.getText().toString();
         //Body of the email
         String text = "Checkout what I learned in the Pluralsight course \"" + course.getTitle() + "\"\n" + mTextNoteText.getText();
+        Intent intent = new Intent(Intent.ACTION_SEND);
     }
 }
