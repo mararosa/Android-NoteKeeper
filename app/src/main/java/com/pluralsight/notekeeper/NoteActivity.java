@@ -29,7 +29,7 @@ public class NoteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Spinner spinnerCousers = findViewById(R.id.spinner_courses);
+        Spinner spinnerCoursers = findViewById(R.id.spinner_courses);
 
         //Antes de criar o adapter precisamos pegar a lista de cursos
         List<CourseInfo> courses = DataManager.getInstance().getCourses();
@@ -41,12 +41,18 @@ public class NoteActivity extends AppCompatActivity {
         //Asssociar o resource que queremos usar para (drop down) uma lista
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Associar o adapter ao spinner
-        spinnerCousers.setAdapter((adapterCourses));
+        spinnerCoursers.setAdapter((adapterCourses));
 
         readDisplayStateValues();
 
         EditText textNoteTitle = findViewById(R.id.text_note_title);
         EditText textNoteText = findViewById(R.id.text_note_text);
+
+        displayNotes(spinnerCoursers, textNoteTitle, textNoteText);
+    }
+
+    private void displayNotes(Spinner spinnerCoursers, EditText textNoteTitle, EditText textNoteText) {
+
     }
 
     private void readDisplayStateValues() {
