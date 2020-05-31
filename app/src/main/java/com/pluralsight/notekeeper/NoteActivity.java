@@ -51,6 +51,8 @@ public class NoteActivity extends AppCompatActivity {
         EditText textNoteTitle = findViewById(R.id.text_note_title);
         EditText textNoteText = findViewById(R.id.text_note_text);
 
+        //we only want to display the note if there is actually a note
+        if(!mIsNewNote)
         displayNotes(spinnerCoursers, textNoteTitle, textNoteText);
     }
 
