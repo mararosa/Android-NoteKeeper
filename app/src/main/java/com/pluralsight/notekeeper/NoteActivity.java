@@ -21,6 +21,9 @@ public class NoteActivity extends AppCompatActivity {
     public static final int POSITION_NOT_SET = -1;
     private NoteInfo mNote;
     private boolean mIsNewNote;
+    private Spinner mSpinnerCoursers;
+    private EditText mTextNoteTitle;
+    private EditText mTextNoteText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class NoteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Spinner spinnerCoursers = findViewById(R.id.spinner_courses);
+        mSpinnerCoursers = findViewById(R.id.spinner_courses);
 
         //Antes de criar o adapter precisamos pegar a lista de cursos
         List<CourseInfo> courses = DataManager.getInstance().getCourses();
@@ -41,16 +44,16 @@ public class NoteActivity extends AppCompatActivity {
         //Asssociar o resource que queremos usar para (drop down) uma lista
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Associar o adapter ao spinner
-        spinnerCoursers.setAdapter((adapterCourses));
+        mSpinnerCoursers.setAdapter((adapterCourses));
 
         readDisplayStateValues();
 
-        EditText textNoteTitle = findViewById(R.id.text_note_title);
-        EditText textNoteText = findViewById(R.id.text_note_text);
+        mTextNoteTitle = findViewById(R.id.text_note_title);
+        mTextNoteText = findViewById(R.id.text_note_text);
 
         //we only want to display the note if there is actually a note
         if(!mIsNewNote)
-        displayNotes(spinnerCoursers, textNoteTitle, textNoteText);
+        displayNotes(mSpinnerCoursers, mTextNoteTitle, mTextNoteText);
     }
 
     private void displayNotes(Spinner spinnerCoursers, EditText textNoteTitle, EditText textNoteText) {
@@ -106,6 +109,10 @@ public class NoteActivity extends AppCompatActivity {
 
     private void sendEmail() {
         //Going to use an implicit intent
-
+        //We need the course information. Select the item for our spinner adn store it in a local variable called course
+        CourseInfo course = (CourseInfo) mSpinnerCoursers.getSelectedItem();
+        //Create a subject for email
+        String subject = mTextNoteTitle.getText().toString();
+        String text = "Checkout what I learned in the Pluralsight course \"" + course.getTitle() + "\"\n" + mTextNoteText.getText();
     }
 }
