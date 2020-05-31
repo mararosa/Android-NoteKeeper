@@ -43,7 +43,7 @@ public class NoteListActivity extends AppCompatActivity {
 
     private void initializeDisplayContent() {
         //Dentro da listview add toda a lista de anotacoes)notes)
-        //1 coisa: pegar a referencia da list view
+        //1 coisa: pegar a referencia da list view. Se marcamos o listView como uma variavel final podemos referenciar ela dentro da classe anonima
         final ListView listNotes = findViewById(R.id.list_notes);
         //Get a reference from noteinfo
         List<NoteInfo> notes = DataManager.getInstance().getNotes();
@@ -59,7 +59,8 @@ public class NoteListActivity extends AppCompatActivity {
                 //Launch the activity when the user makes that selection. To do it, we need an intent
                 Intent intent = new Intent(NoteListActivity.this, NoteActivity.class);
                 //get the NoteInfo that corresponds to their selection.
-                // Declare a local variable (note)
+                // Declare a local variable (note). Assinar o resultado para obter a posicao de um item d listview
+                //Pegamos a posicao que o usuario selecionou
                 NoteInfo note = (NoteInfo) listNotes.getItemAtPosition(position);
                 //When the user makes a selection from the list, the note that they selected is now packaged up int that intent and then sent over to our NoteActivity.
                 intent.putExtra(NoteActivity.NOTE_INFO, note);

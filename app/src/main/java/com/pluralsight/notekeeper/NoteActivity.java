@@ -19,6 +19,8 @@ import android.widget.Spinner;
 import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
+    //Intent extras are name-value pairs and those names of course are string. So when use strings we generally want to be constants.
+    //Colocamos a constante da activity que sera o destino do extra.
     public static final  String NOTE_INFO = "com.pluralsight.notekeeper.NOTE_INFO";
     private NoteInfo mNote;
     private boolean mIsNewNote;
@@ -53,6 +55,7 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void displayNotes(Spinner spinnerCoursers, EditText textNoteTitle, EditText textNoteText) {
+        //Pego a lista de cursos que esta no spinner
        List<CourseInfo> courses = DataManager.getInstance().getCourses();
        //We want to know the index of the course from our notes, so called getCourse.
        int courseIndex = courses.indexOf(mNote.getCourse());
@@ -63,10 +66,11 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
+    //NoteActivity is where we actually get the note out of the intent that was passed to us and display within a screen
     private void readDisplayStateValues() {
         //Getting a reference to the intent that was used to start this activity
         Intent intent = getIntent();
-        //Get the extra containing the note from it
+        //Get the extra containing the note from it. Note_info is the name of the extra
         mNote = intent.getParcelableExtra(NOTE_INFO);
         //If there is no note passed, isNewNote will be true. But if there is a note passed, isNewNote will be false.
         mIsNewNote = mNote == null;
