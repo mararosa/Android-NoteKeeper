@@ -56,6 +56,23 @@ public class NoteActivity extends AppCompatActivity {
         displayNotes(mSpinnerCoursers, mTextNoteTitle, mTextNoteText);
     }
 
+    //Activity will save any changes to the note when the user leaves a note.
+    //When the user moves away from the activity, onPause will automatically be called
+    //onPause calls saveNote, which takes all the values from the fiels on screen and puts them into our note
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveNote();
+    }
+
+    private void saveNote() {
+        //set the values in a note I have a reference to.
+        mNote.setCourse((CourseInfo) mSpinnerCoursers.getSelectedItem());
+        //get the values of each of the text fields and set the title and the text on the note
+        mNote.setTitle(mTextNoteTitle.getText().toString());
+        mNote.setText(mTextNoteText.getText().toString());
+    }
+
     private void displayNotes(Spinner spinnerCoursers, EditText textNoteTitle, EditText textNoteText) {
         //Pego a lista de cursos que esta no spinner
        List<CourseInfo> courses = DataManager.getInstance().getCourses();
