@@ -109,10 +109,11 @@ public class NoteActivity extends AppCompatActivity {
 
     private void sendEmail() {
         //Going to use an implicit intent
-        //We need the course information. Select the item for our spinner adn store it in a local variable called course
+        //We need the course information. Select the item for our spinner and store it in a local variable called course
         CourseInfo course = (CourseInfo) mSpinnerCoursers.getSelectedItem();
-        //Create a subject for email
+        //Create a subject for email. Assign that back value of the editText for our note title. It will return something called an editable, so use tostring to return string
         String subject = mTextNoteTitle.getText().toString();
+        //Body of the email
         String text = "Checkout what I learned in the Pluralsight course \"" + course.getTitle() + "\"\n" + mTextNoteText.getText();
     }
 }
