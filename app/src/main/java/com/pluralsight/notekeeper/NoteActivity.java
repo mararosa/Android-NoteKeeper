@@ -58,7 +58,7 @@ public class NoteActivity extends AppCompatActivity {
        spinnerCoursers.setSelection(courseIndex);
 
         textNoteTitle.setText((mNote.getTitle()));
-        textNoteText.setText((mNote.getTitle()));
+        textNoteText.setText((mNote.getText()));
 
     }
 
