@@ -33,7 +33,11 @@ public class NoteActivity extends AppCompatActivity {
         //Criar o adapter para popular o spinner (associar a lista ao spinner)
         //context this, recurso padrao do android: spinner item eh o recurso que usaremos para formatar
         // o item selecionado no spinner, e entao damos a informacao (courses) que sera coloca no spinner
-        ArrayAdapter<CourseInfo> adapterCourses = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, courses);
+        ArrayAdapter<CourseInfo> adapterCourses = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, courses); //build array adapter
+        //Asssociar o resource que queremos usar para (drop down) uma lista
+        adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Associar o adapter ao spinner
+        spinnerCousers.setAdapter((adapterCourses));
 
 
 
