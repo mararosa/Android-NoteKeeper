@@ -17,6 +17,15 @@ public final class NoteInfo implements Parcelable {
         mText = text;
     }
 
+    //Constructor that accepts a Parcel as a parameter
+    //Pribate to make sure it cannot be called from outside of our NoteInfo class
+    private NoteInfo(Parcel parcel) {
+        //First value we wanna be back
+        mCourse = parcel.readParcelable(CourseInfo.class.getClassLoader());
+        mTitle = parcel.readString();
+        mText = parcel.readString();
+    }
+
     public CourseInfo getCourse() {
         return mCourse;
     }
@@ -67,15 +76,36 @@ public final class NoteInfo implements Parcelable {
         return getCompareKey();
     }
 
-    //Use when we have a special parcelling needs, otherwise return zero
+    //Use when we have a special parcelling needs, otherwise return zero. Identifies any special handling needs.
     @Override
     public int describeContents() {
         return 0;
     }
 
     //Responsible to write the member information for the type instance into the Parcel and recevies a parcelable as a parameter
+   //Handle the details of writing our content into the Parcel.
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
+    public void writeToParcel(Parcel parcel, int flags) {
+        //Do: Write each member of NoteInfo into that Parcel
+        //Course is a reference type, that means that course is going to have to be Parcelable
+        parcel.writeParcelable(mCourse, 0); //zero is because we dont need a special handling
+        parcel.writeString(mTitle);
+        parcel.writeString(mText);
     }
+
+    //Indicating CREATOR is able to creat instances of NoteInfo
+    public static final Parcelable.Creator<NoteInfo> CREATOR =
+            //Use to create new instaces of our NoteInfo class
+            new Parcelable.Creator<NoteInfo>() {
+                @Override
+                public NoteInfo createFromParcel(Parcel parcel) {
+                    return new NoteInfo(parcel); //passing a parcel as a constructor argument
+                }
+
+                @Override
+                public NoteInfo[] newArray(int size) {
+                    return new NoteInfo[size];
+                }
+            };
+
 }
