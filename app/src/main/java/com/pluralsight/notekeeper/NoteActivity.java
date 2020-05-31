@@ -95,8 +95,17 @@ public class NoteActivity extends AppCompatActivity {
         int position = intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET);
         //make sure that the position is actually set, reach out the data manager and get the note at that position and put it into my field
         mIsNewNote = position == POSITION_NOT_SET;
-        if(!mIsNewNote)
+        if(mIsNewNote) {
+            createNewNote();
+
+        } else {
             mNote = DataManager.getInstance().getNotes().get(position);
+        }
+
+    }
+
+    private void createNewNote() {
+
     }
 
     @Override
