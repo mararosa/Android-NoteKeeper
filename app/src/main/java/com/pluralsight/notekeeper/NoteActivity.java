@@ -23,6 +23,7 @@ public class NoteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Spinner spinnerCousers = findViewById(R.id.spinner_courses);
+        //Criar o adapter para popular o spinner
 
 
     }
