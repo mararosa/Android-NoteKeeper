@@ -11,7 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -23,7 +26,15 @@ public class NoteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Spinner spinnerCousers = findViewById(R.id.spinner_courses);
-        //Criar o adapter para popular o spinner
+
+        //Antes de criar o adapter precisamos pegar a lista de cursos
+        List<CourseInfo> courses = DataManager.getInstance().getCourses();
+
+        //Criar o adapter para popular o spinner (associar a lista ao spinner)
+        //context this, recurso padrao do android: spinner item eh o recurso que usaremos para formatar
+        // o item selecionado no spinner, e entao damos a informacao (courses) que sera coloca no spinner
+        ArrayAdapter<CourseInfo> adapterCourses = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, courses);
+
 
 
     }
@@ -48,5 +59,7 @@ public class NoteActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
+
     }
 }
