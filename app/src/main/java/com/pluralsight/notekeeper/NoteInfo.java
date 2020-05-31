@@ -3,6 +3,9 @@ package com.pluralsight.notekeeper;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Got members from the course, title e text from the note
+ */
 public final class NoteInfo {
     private CourseInfo mCourse;
     private String mTitle;
@@ -38,8 +41,9 @@ public final class NoteInfo {
         mText = text;
     }
 
+
     private String getCompareKey() {
-        return mCourse.getCourseId() + "|" + mTitle + "|" + mText;
+        return mCourse.getCourseId() + "|" + mTitle + "|" + mText;  //Just a way to find identifying information for it
     }
 
     @Override
@@ -57,6 +61,7 @@ public final class NoteInfo {
         return getCompareKey().hashCode();
     }
 
+    //Return a note, we will populate the list items
     @Override
     public String toString() {
         return getCompareKey();

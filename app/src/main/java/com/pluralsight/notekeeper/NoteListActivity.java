@@ -9,9 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
 
+    /**
+     * Parte do processo de criar a activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +35,21 @@ public class NoteListActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Popular a listView
+        initializeDisplayContent();
+    }
+
+    private void initializeDisplayContent() {
+        //Dentro da listview add toda a lista de anotacoes)notes)
+        //1 coisa: pegar a referencia da list view
+        ListView listNotes = findViewById(R.id.list_notes);
+        //Get a reference from noteinfo
+        List<NoteInfo> notes = DataManager.getInstance().getNotes();
+        // Get the list notes, put into the listview with an adapter
+        ArrayAdapter<NoteInfo> adapterNotes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
+
+        listNotes.setAdapter(adapterNotes);
     }
 
 }
