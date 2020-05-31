@@ -21,6 +21,7 @@ import java.util.List;
 public class NoteActivity extends AppCompatActivity {
     public static final  String NOTE_INFO = "com.pluralsight.notekeeper.NOTE_INFO";
     private NoteInfo mNote;
+    private boolean mIsNewNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,8 @@ public class NoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         //Get the extra containing the note from it
         mNote = intent.getParcelableExtra(NOTE_INFO);
+        //If there is no note passed, isNewNote will be true. But if there is a note passed, isNewNote will be false.
+        mIsNewNote = mNote == null;
     }
 
     @Override
