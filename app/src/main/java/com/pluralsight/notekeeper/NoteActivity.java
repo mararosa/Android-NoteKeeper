@@ -103,8 +103,6 @@ public class NoteActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-
-
     }
 
     private void sendEmail() {
@@ -114,7 +112,7 @@ public class NoteActivity extends AppCompatActivity {
         //Create a subject for email. Assign that back value of the editText for our note title. It will return something called an editable, so use tostring to return string
         String subject = mTextNoteTitle.getText().toString();
         //Body of the email
-        String text = "Checkout what I learned in the Pluralsight course \"" + course.getTitle() + "\"\n" + mTextNoteText.getText();
+        String text = "Hello!!! Checkout what I learned in the Pluralsight course: \"" + course.getTitle() + "\"\n" + mTextNoteText.getText();
        //creating the intent to do the send and an ACTION associate with email
         Intent intent = new Intent(Intent.ACTION_SEND);
         //This is a standard Internet mime type for sending email. Will identify a target
@@ -123,7 +121,5 @@ public class NoteActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_SUBJECT, subject); //email title
         intent.putExtra(Intent.EXTRA_TEXT, text); //email body
         startActivity(intent);
-
-
     }
 }
