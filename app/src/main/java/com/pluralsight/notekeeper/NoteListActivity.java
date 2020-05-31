@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -45,13 +44,14 @@ public class NoteListActivity extends AppCompatActivity {
         //Dentro da listview add toda a lista de anotacoes)notes)
         //1 coisa: pegar a referencia da list view. Se marcamos o listView como uma variavel final podemos referenciar ela dentro da classe anonima
         final ListView listNotes = findViewById(R.id.list_notes);
-        //Get a reference from noteinfo
+        //***Get a reference from noteinfo. Datamanager is how we populate the activity. We got all the notes, and then loaded int an adapter(which then populate our ListView)
         List<NoteInfo> notes = DataManager.getInstance().getNotes();
         // Get the list notes, put into the listview with an adapter
         ArrayAdapter<NoteInfo> adapterNotes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
 
         listNotes.setAdapter(adapterNotes);
 
+        //***So when the user makes a selection we get the position passed into us, and ten using that position we get the actual NoteInfo. And that is we put in to the intent
         //Handle the user making a selection
         listNotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,9 +61,9 @@ public class NoteListActivity extends AppCompatActivity {
                 //get the NoteInfo that corresponds to their selection.
                 // Declare a local variable (note). Assinar o resultado para obter a posicao de um item d listview
                 //Pegamos a posicao que o usuario selecionou
-                NoteInfo note = (NoteInfo) listNotes.getItemAtPosition(position);
+//                NoteInfo note = (NoteInfo) listNotes.getItemAtPosition(position);
                 //When the user makes a selection from the list, the note that they selected is now packaged up int that intent and then sent over to our NoteActivity.
-                intent.putExtra(NoteActivity.NOTE_INFO, note);
+                intent.putExtra(NoteActivity.NOTE_POSITION, position);
 
                 startActivity(intent);
             }

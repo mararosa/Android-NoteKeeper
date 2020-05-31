@@ -3,13 +3,9 @@ package com.pluralsight.notekeeper;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -21,7 +17,8 @@ import java.util.List;
 public class NoteActivity extends AppCompatActivity {
     //Intent extras are name-value pairs and those names of course are string. So when use strings we generally want to be constants.
     //Colocamos a constante da activity que sera o destino do extra.
-    public static final  String NOTE_INFO = "com.pluralsight.notekeeper.NOTE_INFO";
+    public static final  String NOTE_POSITION = "com.pluralsight.notekeeper.NOTE_INFO";
+    public static final int POSITION_NOT_SET = -1;
     private NoteInfo mNote;
     private boolean mIsNewNote;
 
@@ -73,7 +70,8 @@ public class NoteActivity extends AppCompatActivity {
         //Getting a reference to the intent that was used to start this activity
         Intent intent = getIntent();
         //Get the extra containing the note from it. Note_info is the name of the extra
-        mNote = intent.getParcelableExtra(NOTE_INFO);
+        //-1 indicate that the extr was not found in the intent
+        int position = intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET);
         //If there is no note passed, isNewNote will be true. But if there is a note passed, isNewNote will be false.
         mIsNewNote = mNote == null;
     }
