@@ -23,11 +23,11 @@ public class DataManager {
     }
 
     public String getCurrentUserName() {
-        return "Jim Wilson";
+        return "Mara Rosa";
     }
 
     public String getCurrentUserEmail() {
-        return "jimw@jwhh.com";
+        return "mara_rrosa@yahoo.com.br";
     }
 
     public List<NoteInfo> getNotes() {

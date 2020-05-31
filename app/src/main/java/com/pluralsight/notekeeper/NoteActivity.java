@@ -38,9 +38,6 @@ public class NoteActivity extends AppCompatActivity {
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Associar o adapter ao spinner
         spinnerCousers.setAdapter((adapterCourses));
-
-
-
     }
 
     @Override
