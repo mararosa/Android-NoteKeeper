@@ -36,7 +36,8 @@ public class NoteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Create instance of ViewModelProvider. This method is boilerplate code, eaning that is code just type the same every time
+        //When the activity initially created will get a brand-new ViewModel instance, but if our activity is destroyed due to  a configuration change, in that case, will get back the existing instance that we had before the activity was destroyed.
+        //Create instance of ViewModelProvider. This method is boilerplate code, meaning that is code just type the same every time
         //getViewModelStore >>> where we wanna store ViewModels
         ViewModelProvider viewModelProvider = new ViewModelProvider(getViewModelStore(),
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()));
