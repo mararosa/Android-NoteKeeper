@@ -25,8 +25,9 @@ public class NoteActivityViewModel extends ViewModel {
     }
 
 
-    //This method can take the values that we saved using saveState and get them back from the Bundle
-    // that we receive into restoreState.
+    //This method can take the values that we saved using saveState and get them back from the Bundle that we receive into restoreState.
+    //When activity is destroyed and recreated, the activity's onCreate method receives the Bundle that has the information that we save in OnSaveInstanceState.
+   //So we call restoreState from our NoteActivity class's onCreate method
     public void restoreState(Bundle inState) {
         mOriginalNoteCourseId = inState.getString(ORIGINAL_NOTE_COURSE_ID);
         mOriginalNoteTitle = inState.getString(ORIGINAL_NOTE_TITLE);
