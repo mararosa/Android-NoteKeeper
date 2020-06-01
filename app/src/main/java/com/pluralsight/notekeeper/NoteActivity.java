@@ -45,6 +45,13 @@ public class NoteActivity extends AppCompatActivity {
         //Get our ViewMoldel. Pass the class information for our NoteActivityModel
         mViewModel = viewModelProvider.get(NoteActivityViewModel.class);
 
+        //To use the Bundle we need make sure the Bundle is no null, because it describe that the activity was destroyed and recreated
+        //Any time we receive the savedInstanceState into our onCreate method, we'll restore the ViewModel's stat using the savedInstanceState
+        if (mViewModel.mIsNewCreated && savedInstanceState != null)
+            mViewModel.restoreState(savedInstanceState);
+
+        mViewModel.mIsNewCreated = false;
+
         mSpinnerCoursers = findViewById(R.id.spinner_courses);
 
         //Antes de criar o adapter precisamos pegar a lista de cursos

@@ -14,6 +14,7 @@ public class NoteActivityViewModel extends ViewModel {
     public String mOriginalNoteCourseId;
     public String mOriginalNoteTitle;
     public String mOriginalNoteText;
+    public boolean mIsNewCreated = true;  //
 
     public void saveState(Bundle outState) {
         //Save the values into the bundle. So when the activity's onSaveInstance method gets called, we will call our
