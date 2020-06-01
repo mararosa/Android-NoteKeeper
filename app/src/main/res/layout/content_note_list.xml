@@ -8,7 +8,6 @@
     tools:context=".NoteListActivity"
     tools:showIn="@layout/activity_note_list">
 
-
     <ListView
         android:id="@+id/list_notes"
         android:layout_width="0dp"
@@ -21,4 +20,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
