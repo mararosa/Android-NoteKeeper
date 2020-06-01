@@ -23,4 +23,13 @@ public class NoteActivityViewModel extends ViewModel {
         outState.putString(ORIGINAL_NOTE_TITLE, mOriginalNoteTitle);
         outState.putString(ORIGINAL_NOTE_TEXT, mOriginalNoteText);
     }
+
+
+    //This method can take the values that we saved using saveState and get them back from the Bundle
+    // that we receive into restoreState.
+    public void restoreState(Bundle inState) {
+        mOriginalNoteCourseId = inState.getString(ORIGINAL_NOTE_COURSE_ID);
+        mOriginalNoteTitle = inState.getString(ORIGINAL_NOTE_TITLE);
+        mOriginalNoteText = inState.getString(ORIGINAL_NOTE_TEXT);
+    }
 }

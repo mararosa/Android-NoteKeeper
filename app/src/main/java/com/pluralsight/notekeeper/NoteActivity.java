@@ -104,6 +104,7 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        //As long is not a null we can save our instance state and do that called saveState method
         if (outState != null) {
             mViewModel.saveState(outState);
         }
