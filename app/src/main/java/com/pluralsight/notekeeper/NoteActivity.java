@@ -47,9 +47,15 @@ public class NoteActivity extends AppCompatActivity {
 
         //To use the Bundle we need make sure the Bundle is no null, because it describe that the activity was destroyed and recreated
         //Any time we receive the savedInstanceState into our onCreate method, we'll restore the ViewModel's stat using the savedInstanceState
+//Activity is newly created there's no instance state passed in, and there's no existing ViewModel.  So return true for new created and false for savedInstanceStat
+//When the user rotates our device from portrait to landscape. The configuration change. So that would cause your activity to be destroyed, we would write our state out to a Bundle, in our onSaveInstance method, but our ViewModel would still exist
+//Activity recreated due to configuration change. OnCreate method will receive in a savedInstanceState. So savedInstanceState will not be null, but the ViewlModel will not be newly created
+//When user try to send an email. When the move from our activity to the gmail activity, and the system destroys our activity, then our state will be written out in onSaveInstanceState.
+//Move to another activity (not on our app): Our activity will be destroy and our ViewModel would be destroyed. When the user returns back to our activity, our OnCreate method is called, receiving in a SavedInstanceState. But our ViewMoldel is going to be a brand viewmodel. (newly created)
         if (mViewModel.mIsNewCreated && savedInstanceState != null)
             mViewModel.restoreState(savedInstanceState);
 
+        //After the newly created we indicated ViewModel is no longer newly created(false)
         mViewModel.mIsNewCreated = false;
 
         mSpinnerCoursers = findViewById(R.id.spinner_courses);
