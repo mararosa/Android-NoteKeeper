@@ -103,10 +103,10 @@ public class NoteActivity extends AppCompatActivity {
     //set each of the original values back
     private void storePreviousNoteValues() {
         //this give me a reference to the original course
-        CourseInfo course = DataManager.getInstance().getCourse(mOriginalNoteCourseId);
+        CourseInfo course = DataManager.getInstance().getCourse(mViewModel.mOriginalNoteCourseId);
         mNote.setCourse(course);
-        mNote.setTitle(mOriginalNoteTitle);
-        mNote.setText(mOriginalNoteText);
+        mNote.setTitle(mViewModel.mOriginalNoteTitle);
+        mNote.setText(mViewModel.mOriginalNoteText);
     }
 
     private void saveNote() {
