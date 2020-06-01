@@ -26,9 +26,6 @@ public class NoteActivity extends AppCompatActivity {
     private EditText mTextNoteText;
     private int mNotePosition;
     private boolean mIsCancelling;
-    private String mOriginalNoteCourseId;
-    private String mOriginalNoteTitle;
-    private String mOriginalNoteText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +92,7 @@ public class NoteActivity extends AppCompatActivity {
 
     //set each of the original values back
     private void storePreviousNoteValues() {
+        //this give me a reference to the original course
         CourseInfo course = DataManager.getInstance().getCourse(mOriginalNoteCourseId);
         mNote.setCourse(course);
         mNote.setTitle(mOriginalNoteTitle);
