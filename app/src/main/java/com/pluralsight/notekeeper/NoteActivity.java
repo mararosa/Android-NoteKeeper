@@ -75,9 +75,9 @@ public class NoteActivity extends AppCompatActivity {
         if (mIsNewNote)
             return;
         //Each course has a unique ID. Now a have the course ID of original note stored inside of our activity
-        mOriginalNoteCourseId = mNote.getCourse().getCourseId();
-        mOriginalNoteTitle = mNote.getTitle();
-        mOriginalNoteText = mNote.getText();
+        mViewModel.mOriginalNoteCourseId = mNote.getCourse().getCourseId();
+        mViewModel.mOriginalNoteTitle = mNote.getTitle();
+        mViewModel.mOriginalNoteText = mNote.getText();
     }
 
     //Activity will save any changes to the note when the user leaves a note.
