@@ -24,6 +24,7 @@ public class NoteActivity extends AppCompatActivity {
     private Spinner mSpinnerCoursers;
     private EditText mTextNoteTitle;
     private EditText mTextNoteText;
+    private int mNotePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +106,11 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void createNewNote() {
-
+        DataManager dm = DataManager.getInstance();
+        //got the position of the note
+        int mNotePosition = dm.createNewNote();
+        //got the note at that position and assign it to my field mNote
+        mNote = dm.getNotes().get(mNotePosition);
     }
 
     @Override
