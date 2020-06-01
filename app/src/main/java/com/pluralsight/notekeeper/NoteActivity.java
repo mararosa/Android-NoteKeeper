@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +35,13 @@ public class NoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Create instance of ViewModelProvider. This method is boilerplate code, eaning that is code just type the same every time
+        //getViewModelStore >>> where we wanna store ViewModels
+        ViewModelProvider viewModelProvider = new ViewModelProvider(getViewModelStore(),
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()));
+        //Get our ViewMoldel. Pass the class information for our NoteActivityModel
+        mViewModel = viewModelProvider.get(NoteActivityViewModel.class);
 
         mSpinnerCoursers = findViewById(R.id.spinner_courses);
 
