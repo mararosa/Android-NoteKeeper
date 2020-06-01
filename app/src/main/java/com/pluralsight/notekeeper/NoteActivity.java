@@ -60,7 +60,7 @@ public class NoteActivity extends AppCompatActivity {
 
         //we only want to display the note if there is actually a note
         if(!mIsNewNote)
-        displayNotes(mSpinnerCoursers, mTextNoteTitle, mTextNoteText);
+            displayNotes(mSpinnerCoursers, mTextNoteTitle, mTextNoteText);
     }
 
     private void saveOriginalNoteValues() {
@@ -81,13 +81,24 @@ public class NoteActivity extends AppCompatActivity {
         super.onPause();
         //check if we are cancelling
         if (mIsCancelling) {
-            if (mIsNewNote)
-            //We only remove the note if it will canceling and a new note
-            DataManager.getInstance().removeNote(mNotePosition);
+            if (mIsNewNote) {
+                //We only remove the note if it will canceling and a new note
+                DataManager.getInstance().removeNote(mNotePosition);
+            } else {
+                storePreviousNoteValues();
+            }
         } else {
             saveNote();
         }
 
+    }
+
+    //set each of the original values back
+    private void storePreviousNoteValues() {
+        CourseInfo course = DataManager.getInstance().getCourse(mOriginalNoteCourseId);
+        mNote.setCourse(course);
+        mNote.setTitle(mOriginalNoteTitle);
+        mNote.setText(mOriginalNoteText);
     }
 
     private void saveNote() {
@@ -100,10 +111,10 @@ public class NoteActivity extends AppCompatActivity {
 
     private void displayNotes(Spinner spinnerCoursers, EditText textNoteTitle, EditText textNoteText) {
         //Pego a lista de cursos que esta no spinner
-       List<CourseInfo> courses = DataManager.getInstance().getCourses();
-       //We want to know the index of the course from our notes, so called getCourse.
-       int courseIndex = courses.indexOf(mNote.getCourse());
-       spinnerCoursers.setSelection(courseIndex);
+        List<CourseInfo> courses = DataManager.getInstance().getCourses();
+        //We want to know the index of the course from our notes, so called getCourse.
+        int courseIndex = courses.indexOf(mNote.getCourse());
+        spinnerCoursers.setSelection(courseIndex);
 
         textNoteTitle.setText((mNote.getTitle()));
         textNoteText.setText((mNote.getText()));
@@ -173,7 +184,7 @@ public class NoteActivity extends AppCompatActivity {
         String subject = mTextNoteTitle.getText().toString();
         //Body of the email
         String text = "Hello!!! Checkout what I learned in the Pluralsight course: \"" + course.getTitle() + "\"\n" + mTextNoteText.getText();
-       //creating the intent to do the send and an ACTION associate with email
+        //creating the intent to do the send and an ACTION associate with email
         Intent intent = new Intent(Intent.ACTION_SEND);
         //This is a standard Internet mime type for sending email. Will identify a target
         intent.setType("message/rfc2822");
