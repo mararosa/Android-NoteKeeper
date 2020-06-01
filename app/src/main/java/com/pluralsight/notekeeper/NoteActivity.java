@@ -64,7 +64,15 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        saveNote();
+        //check if we are cancelling
+        if (mIsCancelling) {
+            if (mIsNewNote)
+            //We only remove the note if it will canceling and a new note
+            DataManager.getInstance().removeNote(mNotePosition);
+        } else {
+            saveNote();
+        }
+
     }
 
     private void saveNote() {
@@ -135,6 +143,7 @@ public class NoteActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_cancel) {
             mIsCancelling = true;
+            //when user selects that menu option(cancel option) the activity will exit and return back the previous activity
             finish();
         }
 
