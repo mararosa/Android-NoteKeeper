@@ -17,8 +17,10 @@ import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
 
+    private ArrayAdapter<NoteInfo> mAdapterNotes;
+
     /**
-     * Parte do processo de criar a activity
+     * Parte do processo de criar a activity. Only gets called when the activity is first created
      * @param savedInstanceState
      */
     @Override
@@ -40,6 +42,7 @@ public class NoteListActivity extends AppCompatActivity {
         initializeDisplayContent();
     }
 
+    //Set our ListView, took an ArrayAdapter, loaded it up with the notes that we had in our DataManager and then display those in the ListView
     private void initializeDisplayContent() {
         //Dentro da listview add toda a lista de anotacoes)notes)
         //1 coisa: pegar a referencia da list view. Se marcamos o listView como uma variavel final podemos referenciar ela dentro da classe anonima
@@ -47,9 +50,9 @@ public class NoteListActivity extends AppCompatActivity {
         //***Get a reference from noteinfo. Datamanager is how we populate the activity. We got all the notes, and then loaded int an adapter(which then populate our ListView)
         List<NoteInfo> notes = DataManager.getInstance().getNotes();
         // Get the list notes, put into the listview with an adapter
-        ArrayAdapter<NoteInfo> adapterNotes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
+        mAdapterNotes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
 
-        listNotes.setAdapter(adapterNotes);
+        listNotes.setAdapter(mAdapterNotes);
 
         //***So when the user makes a selection we get the position passed into us, and ten using that position we get the actual NoteInfo. And that is we put in to the intent
         //Handle the user making a selection
