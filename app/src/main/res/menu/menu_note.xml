@@ -7,5 +7,7 @@
         android:orderInCategory="100"
         android:title="Send as email"
         app:showAsAction="never" />
-    <item android:title="action_cancel" />
+    <item
+        android:id="@+id/action_cancel"
+        android:title="@android:string/cancel" />
 </menu>
