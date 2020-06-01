@@ -16,7 +16,11 @@ public class NoteActivityViewModel extends ViewModel {
     public String mOriginalNoteText;
 
     public void saveState(Bundle outState) {
-        //Save the values into the bundle
-
+        //Save the values into the bundle. So when the activity's onSaveInstance method gets called, we will call our
+        //SaveState method, we receive that Bundle, and then we write the value of our ORIGINALNOTECOURSEID, TITLE and TEXT into that Bundle
+        //And the system will take care persisting that information even if our activity and viewmodel are destroyed
+        outState.putString(ORIGINAL_NOTE_COURSE_ID, mOriginalNoteCourseId);
+        outState.putString(ORIGINAL_NOTE_TITLE, mOriginalNoteTitle);
+        outState.putString(ORIGINAL_NOTE_TEXT, mOriginalNoteText);
     }
 }
