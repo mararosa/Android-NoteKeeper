@@ -26,6 +26,9 @@ public class NoteActivity extends AppCompatActivity {
     private EditText mTextNoteText;
     private int mNotePosition;
     private boolean mIsCancelling;
+    private String mOriginalNoteCourseId;
+    private String mOriginalNoteTitle;
+    private String mOriginalNoteText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,8 @@ public class NoteActivity extends AppCompatActivity {
         mSpinnerCoursers.setAdapter((adapterCourses));
 
         readDisplayStateValues();
+        //preserve the original value from of the note
+        saveOriginalNoteValues();
 
         mTextNoteTitle = findViewById(R.id.text_note_title);
         mTextNoteText = findViewById(R.id.text_note_text);
@@ -56,6 +61,16 @@ public class NoteActivity extends AppCompatActivity {
         //we only want to display the note if there is actually a note
         if(!mIsNewNote)
         displayNotes(mSpinnerCoursers, mTextNoteTitle, mTextNoteText);
+    }
+
+    private void saveOriginalNoteValues() {
+        //check if the note is null
+        if (mIsNewNote)
+            return;
+        //Each course has a unique ID. Now a have the course ID of original note stored inside of our activity
+        mOriginalNoteCourseId = mNote.getCourse().getCourseId();
+        mOriginalNoteTitle = mNote.getTitle();
+        mOriginalNoteText = mNote.getText();
     }
 
     //Activity will save any changes to the note when the user leaves a note.
@@ -95,7 +110,7 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
-    //NoteActivity is where we actually get the note out of the intent that was passed to us and display within a screen
+    //NoteActivity is where we actually get the note information out of the intent that was passed to us and display within a screen
     private void readDisplayStateValues() {
         //Getting a reference to the intent that was used to start this activity
         Intent intent = getIntent();

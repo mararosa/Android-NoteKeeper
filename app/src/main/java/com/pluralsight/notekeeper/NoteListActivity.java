@@ -42,6 +42,14 @@ public class NoteListActivity extends AppCompatActivity {
         initializeDisplayContent();
     }
 
+    //Need to let the ArrayAdapter know the data has changed
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //This way each time our NoteListActivity moves back into the foreground, we are telling it this is good.
+        mAdapterNotes.notifyDataSetChanged();
+    }
+
     //Set our ListView, took an ArrayAdapter, loaded it up with the notes that we had in our DataManager and then display those in the ListView
     private void initializeDisplayContent() {
         //Dentro da listview add toda a lista de anotacoes)notes)
